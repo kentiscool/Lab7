@@ -102,33 +102,34 @@ class EntryPage extends HTMLElement {
   }
 
   set entry(entry) {
-    this.shadowRoot.querySelector('.entry-title').innerText = entry.title;
-    this.shadowRoot.querySelector('.entry-date').innerText = entry.date;
-    this.shadowRoot.querySelector('.entry-content').innerText = entry.content;
-    var element = this.shadowRoot.querySelectorAll("img"), index;
-    for (index = element.length - 1; index >= 0; index--) {
+    if (entry) {
+      this.shadowRoot.querySelector('.entry-title').innerText = entry.title;
+      this.shadowRoot.querySelector('.entry-date').innerText = entry.date;
+      this.shadowRoot.querySelector('.entry-content').innerText = entry.content;
+      var element = this.shadowRoot.querySelectorAll("img"), index;
+      for (index = element.length - 1; index >= 0; index--) {
         element[index].parentNode.removeChild(element[index]);
-    }
-    var element = this.shadowRoot.querySelectorAll("audio"), index;
-    for (index = element.length - 1; index >= 0; index--) {
+      }
+      var element = this.shadowRoot.querySelectorAll("audio"), index;
+      for (index = element.length - 1; index >= 0; index--) {
         element[index].parentNode.removeChild(element[index]);
-    }
-    if (entry.image) {
-      let entryImage = document.createElement('img');
-      entryImage.classList.add('entry-image');
-      entryImage.src = entry.image.src;
-      entryImage.alt = entry.image.alt;
-      this.shadowRoot.querySelector('.post').appendChild(entryImage);
-    }
-    if (entry.audio) {
-      let entryAudio = document.createElement('audio');
-      entryAudio.classList.add('entry-audio');
-      entryAudio.src = entry.audio;
-      entryAudio.controls = true;
-      this.shadowRoot.querySelector('.entry-audio-section').appendChild(entryAudio);
+      }
+      if (entry.image) {
+        let entryImage = document.createElement('img');
+        entryImage.classList.add('entry-image');
+        entryImage.src = entry.image.src;
+        entryImage.alt = entry.image.alt;
+        this.shadowRoot.querySelector('.post').appendChild(entryImage);
+      }
+      if (entry.audio) {
+        let entryAudio = document.createElement('audio');
+        entryAudio.classList.add('entry-audio');
+        entryAudio.src = entry.audio;
+        entryAudio.controls = true;
+        this.shadowRoot.querySelector('.entry-audio-section').appendChild(entryAudio);
+      }
     }
   }
-
 }
 
 customElements.define('entry-page', EntryPage);

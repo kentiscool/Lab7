@@ -90,22 +90,24 @@ class JournalEntry extends HTMLElement {
   }
 
   set entry(entry) {
-    this.shadowRoot.querySelector('.entry-title').innerText = entry.title;
-    this.shadowRoot.querySelector('.entry-date').innerText = entry.date;
-    this.shadowRoot.querySelector('.entry-content').innerText = entry.content;
-    if (entry.image) {
-      let entryImage = document.createElement('img');
-      entryImage.classList.add('entry-image');
-      entryImage.src = entry.image.src;
-      entryImage.alt = entry.image.alt;
-      this.shadowRoot.querySelector('.entry').appendChild(entryImage);
-    }
-    if (entry.audio) {
-      let entryAudio = document.createElement('audio');
-      entryAudio.classList.add('entry-audio');
-      entryAudio.src = entry.audio;
-      entryAudio.controls = true;
-      this.shadowRoot.querySelector('.entry').appendChild(entryAudio);
+    if (entry) {
+      this.shadowRoot.querySelector('.entry-title').innerText = entry.title;
+      this.shadowRoot.querySelector('.entry-date').innerText = entry.date;
+      this.shadowRoot.querySelector('.entry-content').innerText = entry.content;
+      if (entry.image) {
+        let entryImage = document.createElement('img');
+        entryImage.classList.add('entry-image');
+        entryImage.src = entry.image.src;
+        entryImage.alt = entry.image.alt;
+        this.shadowRoot.querySelector('.entry').appendChild(entryImage);
+      }
+      if (entry.audio) {
+        let entryAudio = document.createElement('audio');
+        entryAudio.classList.add('entry-audio');
+        entryAudio.src = entry.audio;
+        entryAudio.controls = true;
+        this.shadowRoot.querySelector('.entry').appendChild(entryAudio);
+      }
     }
   }
 
