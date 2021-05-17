@@ -105,6 +105,14 @@ class EntryPage extends HTMLElement {
     this.shadowRoot.querySelector('.entry-title').innerText = entry.title;
     this.shadowRoot.querySelector('.entry-date').innerText = entry.date;
     this.shadowRoot.querySelector('.entry-content').innerText = entry.content;
+    var element = this.shadowRoot.querySelectorAll("img"), index;
+    for (index = element.length - 1; index >= 0; index--) {
+        element[index].parentNode.removeChild(element[index]);
+    }
+    var element = this.shadowRoot.querySelectorAll("audio"), index;
+    for (index = element.length - 1; index >= 0; index--) {
+        element[index].parentNode.removeChild(element[index]);
+    }
     if (entry.image) {
       let entryImage = document.createElement('img');
       entryImage.classList.add('entry-image');
